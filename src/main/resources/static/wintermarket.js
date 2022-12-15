@@ -1,5 +1,6 @@
 angular.module('app',[]).controller('indexController', function($scope, $http){
 
+
 //    console.log("test console.log: wintermarket.js - is working!")
 //    $http.get('http://localhost:8189/winter/api/v1/products')
 //    .then(function(response){
