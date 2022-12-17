@@ -10,10 +10,25 @@
 </head>
 <body>
 <div class="container" ng-controller="indexController">
+
     <h1>Winter Market</h1>
+    <h4>Фильтр</h4>
+    <form novalidate ng-submit = "loadProducts()">
+        <div class="form-floating input-group-sn">
+            <input type="text" class="form-control" id="filterTitle" placeholder="title part" ng-model="filter.title_part">
+        </div>
+        <div class="form-floating input-group-sn">
+            <input type="number" class="form-control" id="filterMinPrice" placeholder="min" ng-model="filter.min_price">
+        </div>
+        <div class="form-floating input-group-sn">
+            <input type="number" class="form-control" id="filterMaxPrice" placeholder="max" ng-model="filter.max_price">
+        </div>
+        <button class="btn btn-success" type="submit" >Применить</button>
+        <br>
+        <br>
+    </form>
 
-    <!--{{productList}}-->
-
+    <br>
     <table class ="table table-hover" cellpadding="0" cellspacing="0">
         <!--заголовки -->
         <tr>
@@ -21,7 +36,6 @@
             <td>Название</td>
             <td>Цена</td>
             <td>Инфо</td>
-            <td>Удаление товара_ADMIN</td>
             <td>Добавить в корзину</td>
         </tr>
         <!--тело  -->
@@ -35,8 +49,35 @@
                 <button class="btn btn-success" ng-click="showProductInfo(p.id)">Инфо</button>
             </td>
             <td>
-                <button class="btn btn-danger" ng-click="deleteProductById(p.id)">Удаление товара</button>
+                <button class="btn btn-primary" ng-click="addToCart(p.id)">Добавить в корзину</button>
             </td>
+        </tr>
+        </tbody>
+    </table>
+<div class="container">
+    <button class="btn btn-secondary"  ng-click="change_page(- 1)" >Предыдущая страница </button>
+    <button class="btn btn-primary" ng-click="change_page(1)" >Следующая страница</button>
+</div>
+    <h1>Ваша корзина</h1>
+    <table class ="table table-hover" cellpadding="0" cellspacing="0">
+        <!--заголовки -->
+        <tr>
+            <td>Название</td>
+            <td>Количество</td>
+            <td>Цена</td>
+        </tr>
+        <!--тело  -->
+        <tbody>
+        <!--for-each-->
+        <tr ng-repeat="item in cart.items">
+            <td>{{item.productTitle}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.pricePerProduct + 'x' + item.quantity + '=' + item.price}}</td>
+        </tr>
+        <tr>
+            <td>Итого</td>
+            <td></td>
+            <td>{{cart.totalPrice}}</td>
         </tr>
         </tbody>
     </table>

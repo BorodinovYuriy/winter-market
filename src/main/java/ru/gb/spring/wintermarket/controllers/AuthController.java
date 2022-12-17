@@ -39,10 +39,6 @@ public class AuthController {
          //клиенту идёт ответ Json с полем token
          return ResponseEntity.ok(new JwtResponseDto(token));
     }
-@GetMapping("/secured")//test
-    private String helloSecurity(){
-         return "HELLo";
-}
 
 
 

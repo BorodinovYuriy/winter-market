@@ -25,6 +25,7 @@ public class UserService implements UserDetailsService {
     }
     @Override
     @Transactional
+    //возвратит ...userdetails.User!!!
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = findByUsername(username).//.get();
                 orElseThrow(() -> new UsernameNotFoundException(String.format("User '%s' not found", username)));
