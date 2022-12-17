@@ -1,6 +1,5 @@
 package ru.gb.spring.wintermarket.configs;
 
-
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

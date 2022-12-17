@@ -65,22 +65,36 @@
             <td>Название</td>
             <td>Количество</td>
             <td>Цена</td>
+            <td>Удалить из корзины</td>
         </tr>
         <!--тело  -->
         <tbody>
         <!--for-each-->
         <tr ng-repeat="item in cart.items">
             <td>{{item.productTitle}}</td>
-            <td>{{item.quantity}}</td>
+            <td>
+                <button class="btn btn-primary" style="width: 50px;" ng-click="changeQuantity(item.productId, -1)" >-</button>
+                {{item.quantity}}
+                <button class="btn btn-primary" style="width: 50px;" ng-click="changeQuantity(item.productId, 1)" >+</button>
+            </td>
             <td>{{item.pricePerProduct + 'x' + item.quantity + '=' + item.price}}</td>
+            <td>
+                <button class="btn btn-danger" ng-click="deleteFromCart(item.productId)" >Удалить</button>
+            </td>
         </tr>
         <tr>
-            <td>Итого</td>
-            <td></td>
+            <td>Итого:</td>
             <td>{{cart.totalPrice}}</td>
+        </tr>
+        <tr>
+            <td>Очистить корзину</td>
+            <td>
+                <button class="btn btn-danger" ng-click="clearCart()" >Очистить</button>
+            </td>
         </tr>
         </tbody>
     </table>
 </div>
 </body>
 </html>
+

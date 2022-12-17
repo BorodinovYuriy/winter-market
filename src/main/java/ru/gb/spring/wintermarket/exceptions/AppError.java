@@ -1,5 +1,5 @@
 package ru.gb.spring.wintermarket.exceptions;
-//1
+
 public class AppError {
     private int statusCode;
     private String message;

@@ -10,3 +10,4 @@ import ru.gb.spring.wintermarket.entity.Product;
 public interface ProductRepository extends JpaRepository<Product,Long>,
         JpaSpecificationExecutor<Product> {
 }
+

@@ -1,6 +1,5 @@
 package ru.gb.spring.wintermarket.controllers;
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +9,6 @@ import ru.gb.spring.wintermarket.entity.Product;
 import ru.gb.spring.wintermarket.exceptions.ResourceNotFoundException;
 import ru.gb.spring.wintermarket.services.ProductService;
 import ru.gb.spring.wintermarket.validators.ProductValidator;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/products")

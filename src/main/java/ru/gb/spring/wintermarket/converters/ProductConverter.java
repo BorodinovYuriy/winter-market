@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 import ru.gb.spring.wintermarket.dto.ProductDto;
 import ru.gb.spring.wintermarket.entity.Product;
 
-
 @Component
 public class ProductConverter {
     public Product dtoToEntity(ProductDto productDto){
@@ -23,3 +22,4 @@ public class ProductConverter {
         );
     }
 }
+

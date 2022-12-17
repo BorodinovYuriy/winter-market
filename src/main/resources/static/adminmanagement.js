@@ -68,3 +68,4 @@ $scope.change_page = function(pageVar) {
 $scope.loadProducts();
 });
 
+

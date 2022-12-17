@@ -1,10 +1,8 @@
 package ru.gb.spring.wintermarket.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import ru.gb.spring.wintermarket.converters.ProductConverter;
 import ru.gb.spring.wintermarket.dto.Cart;
 import ru.gb.spring.wintermarket.services.CartService;
 
@@ -14,6 +12,7 @@ import ru.gb.spring.wintermarket.services.CartService;
 public class CartController {
     private final CartService cartService;
 
+
     @GetMapping("/add/{id}")
     public void addToCart(@PathVariable Long id){
         cartService.add(id);
@@ -22,6 +21,29 @@ public class CartController {
     public Cart getCurrentCart(){
         return cartService.getCurrentCart();
     }
+
+
+
+
+    @PutMapping("/increase/{id}")
+    public void increaseProductInCart(@PathVariable Long id){
+        cartService.increaseProductInCart(id);
+    }
+    @PutMapping("/decrease/{id}")
+    public void decreaseProductInCart(@PathVariable Long id){
+        cartService.decreaseProductInCart(id);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteProductById(@PathVariable Long id){
+        cartService.deleteProductById(id);
+
+    }
+    @DeleteMapping()
+    public void clearCart(){
+        cartService.clearCart();
+
+    }
+
 
 
 

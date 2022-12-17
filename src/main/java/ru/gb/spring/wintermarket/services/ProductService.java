@@ -20,11 +20,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
-/*    public List<Product>findAll() {
-        System.out.println(productRepository.findAll());
-        return productRepository.findAll();
-    }*/
-    //*****************************************
     //find Page method!!!
     public Page<Product> getProducts(Integer minCost, Integer maxCost, String titlePart, Integer page){
         Specification<Product> spec = Specification.where(null);
@@ -62,3 +57,4 @@ public class ProductService {
     }
 
 }
+

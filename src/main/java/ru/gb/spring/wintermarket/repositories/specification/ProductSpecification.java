@@ -3,7 +3,6 @@ package ru.gb.spring.wintermarket.repositories.specification;
 import org.springframework.data.jpa.domain.Specification;
 import ru.gb.spring.wintermarket.entity.Product;
 
-
 //Спецификация для поиска: больше заданного/меньше/часть тайтла
 public class ProductSpecification {
 

@@ -1,7 +1,6 @@
 package ru.gb.spring.wintermarket.dto;
 
 import lombok.Data;
-import ru.gb.spring.wintermarket.entity.Product;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,26 +13,58 @@ public class Cart {
     public Cart(){
         this.items = new ArrayList<>();
     }
-
     public List<CartItem> getItems() {
-        //возвратит немодифицируемый лист
         return Collections.unmodifiableList(items);
     }
-    public void  add(Product product) { // TODO: 15.12.2022 доработать в дз
+    public void  add(ProductDto productDto) {
+            for(CartItem p : items){
+                if(p.getProductId().equals(productDto.getId())){
+                    p.setQuantity(p.getQuantity() + 1);
+                    recalculate();
+                    return;
+                }
+            }
         items.add(new CartItem(
-                product.getId(),
-                product.getTitle(),
+                productDto.getId(),
+                productDto.getTitle(),
                 1,
-                product.getPrice(),
-                product.getPrice())
+                productDto.getPrice())
         );
         recalculate();
     }
     private void recalculate(){
         totalPrice = 0;
         for(CartItem item : items){
-            totalPrice += item.getPrice();
+            item.setPrice(item.getPricePerProduct() * item.getQuantity());
+            totalPrice += item.getPrice() * item.getQuantity();
         }
     }
-
+    public void increaseProduct(ProductDto productDto) {
+        for(CartItem p : items){
+            if(p.getProductId().equals(productDto.getId())) {
+                p.setQuantity(p.getQuantity() + 1);
+                recalculate();
+                return;
+            }
+        }
+    }
+    public void decreaseProduct(ProductDto productDto) {
+        for(CartItem p : items){
+            if(p.getProductId().equals(productDto.getId())) {
+                if(p.getQuantity() > 1){
+                    p.setQuantity(p.getQuantity() - 1);
+                    recalculate();
+                    return;
+                }
+            }
+        }
+    }
+    public void delete(ProductDto productDto) {
+        items.removeIf(p -> p.getProductId().equals(productDto.getId()));
+        recalculate();
+    }
+    public void clear() {
+        items.clear();
+    }
 }
+

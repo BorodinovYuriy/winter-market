@@ -20,6 +20,25 @@ $scope.loadProducts = function() {
                                   $scope.productList = response.data.content;
                 })
 }
+//Пагинация
+$scope.change_page = function(pageVar) {
+             $scope.pageNumber = $scope.pageNumber + pageVar;
+             if($scope.pageNumber <= 0){
+                    $scope.pageNumber = 1
+             }
+             $http({
+                    url: contextPath +'/products',
+                    method: 'GET',
+                    params: {
+                             p: $scope.pageNumber,
+                             min_price: $scope.filter ? $scope.filter.min_price : null,
+                             max_price: $scope.filter ? $scope.filter.max_price : null,
+                             title_part: $scope.filter ? $scope.filter.title_part : null
+                    }
+             }).then(function(response) {
+                     $scope.productList = response.data.content;
+             })
+}
 //Информация о продукте
 $scope.showProductInfo = function(productId){
     $http.get(contextPath + '/products/'+productId)
@@ -46,24 +65,33 @@ $scope.loadCart = function(){
     $scope.cart = response.data;
     })
 }
-//Пагинация
-$scope.change_page = function(pageVar) {
-             $scope.pageNumber = $scope.pageNumber + pageVar;
-             if($scope.pageNumber <= 0){
-                    $scope.pageNumber = 1
-             }
-             $http({
-                    url: contextPath +'/products',
-                    method: 'GET',
-                    params: {
-                             p: $scope.pageNumber,
-                             min_price: $scope.filter ? $scope.filter.min_price : null,
-                             max_price: $scope.filter ? $scope.filter.max_price : null,
-                             title_part: $scope.filter ? $scope.filter.title_part : null
-                    }
-             }).then(function(response) {
-                     $scope.productList = response.data.content;
-             })
+//Удаление из корзины
+$scope.deleteFromCart = function(productId){
+    $http.delete(contextPath + '/cart/'+ productId).then(function(response){
+    $scope.loadCart();
+    })
+}
+//Очистить корзину
+$scope.clearCart = function(productId){
+    $http.delete(contextPath + '/cart').then(function(response){
+    $scope.loadCart();
+    })
+}
+//Количество в корзине
+$scope.changeQuantity = function(productId, number){
+    if(number < 0){
+            $http.put(contextPath + '/cart/decrease/' + productId)
+            .then(function(response){
+                $scope.loadCart();
+            })
+    }
+    if(number > 0){
+            $http.put(contextPath + '/cart/increase/' + productId)
+            .then(function(response){
+                $scope.loadCart();
+            })
+    }
+
 }
 
 
@@ -72,3 +100,4 @@ $scope.loadProducts();
 $scope.loadCart();
 
 });
+

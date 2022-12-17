@@ -1,6 +1,5 @@
 package ru.gb.spring.wintermarket.entity;
 
-
 import javax.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
