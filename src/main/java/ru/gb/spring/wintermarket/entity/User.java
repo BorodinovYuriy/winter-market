@@ -1,5 +1,6 @@
 package ru.gb.spring.wintermarket.entity;
 
+
 import javax.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ public class User {
     @Column(name = "id")
     private Long id;
     @Column(name = "username")
-    private String userName;
+    private String username;
     @Column(name = "password")
     private String password;
 
