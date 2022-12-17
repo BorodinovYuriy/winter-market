@@ -1,5 +1,6 @@
 package ru.gb.spring.wintermarket.configs;
 
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -44,6 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Override
     @Bean
+            //AuthenticationManager -> приходит u/p он связывается с
+            // UserDetailsService и если ок -> возвратит u/p(UserDetailsService)
     public AuthenticationManager authenticationManagerBean() throws Exception{
         return super.authenticationManagerBean();
     }

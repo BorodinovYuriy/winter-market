@@ -1,5 +1,6 @@
 package ru.gb.spring.wintermarket.controllers;
 
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,17 +39,5 @@ public class AuthController {
          //клиенту идёт ответ Json с полем token
          return ResponseEntity.ok(new JwtResponseDto(token));
     }
-@GetMapping("/secured")//test
-    private String helloSecurity(){
-         return "HELLo";
-}
-
-
-
-
-
-
-
-
 
 }

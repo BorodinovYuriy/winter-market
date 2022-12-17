@@ -1,7 +1,12 @@
 package ru.gb.spring.wintermarket.entity;
 
+
 import javax.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -16,11 +21,11 @@ public class Role {
     @Column(name = "name")
     private String name;
 
-/*    @CreationTimestamp
+    @CreationTimestamp
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
     @Column(name = "updated_at")
-    private LocalDateTime updatedAt;*/
+    private LocalDateTime updatedAt;
 }
