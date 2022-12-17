@@ -21,3 +21,4 @@ spring:
 jwt:
   secret: euyn2121c4ec2234c87482n8979mudifhj*(*UJ
   lifetime: 36000000
+
