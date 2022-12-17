@@ -1,14 +1,6 @@
 angular.module('app',[]).controller('indexController', function($scope, $http){
 
-
     console.log("test console.log: wintermarket.js - is working!")
-
-//    $http.get('http://localhost:8189/winter/api/v1/products')
-//    .then(function(response){
-//    console.log(response.data)
-//    let products = response.data;
-//    console.log(products[0].title)
-//    });
 
     const contextPath = 'http://localhost:8189/winter/api/v1';
     $scope.pageNumber = 1;
@@ -28,25 +20,27 @@ $scope.loadProducts = function() {
                                   $scope.productList = response.data.content;
                 })
 }
+//Информация о продукте
 $scope.showProductInfo = function(productId){
     $http.get(contextPath + '/products/'+productId)
             .then(function(response){
             alert(response.data.title);
     })
 }
+//Удаление
 $scope.deleteProductById = function(id){
             $http.delete(contextPath + '/products/' + id)
             .then(function(response) {
                 $scope.loadProducts();
             })
 }
-
+//Добавить в корзину
 $scope.addToCart = function(productId){
     $http.get(contextPath + '/cart/add/' + productId).then(function(response){
     $scope.loadCart();
     })
 }
-
+//Отображение корзины
 $scope.loadCart = function(){
     $http.get(contextPath + '/cart').then(function(response){
     $scope.cart = response.data;
